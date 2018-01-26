@@ -1,28 +1,44 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
 int main()
 {
-    char input = '0';
-    int n =0;
-    while(1)
-    {
-    cout<< "Please select the number that matches the program you would like to run \n";
-    cout<< "1. 3n+1 \n";
-    cout<< "2. Sum from 1 to 100 \n";
-    cout<< "3. Sum reciprocals \n";
-    cout<< "4. Compute factorial from input \n";
-    cout<< "Q. Exit \n";
-    cout<<"Please enter a number \n";
-
+  //initialize varibles
+  //input is char for intutive input options
+  char input = '0';
+  int n =0;
+  while(1) //refresh choices after task completion
+  {
+  cout<< "Please select the number that matches the program you would like to run \n";
+  cout<< "1. 3n+1 \n";
+  cout<< "2. Sum from 1 to 100 \n";
+  cout<< "3. Sum reciprocals \n";
+  cout<< "4. Compute factorial from input \n";
+  cout<< "Q. Exit \n";
+  cout<<"Please enter a number \n";
+  //gather user input
   cin>>input;
+  //reads only first input character, disregards rest
+  cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+  //reset n after task completion
   n=0;
+  //run task approprate to user input
   switch (input){
-  case '1':
+  case '1': // runs the 3n+1 formula on input, returns steps taken
       cout<<"\n";
       cout<<"Please enter a number to check \n";
-      cin>>n;
+      //this prevents bad nonnumeric from freezing the code, should be a function but thats kidna true for the whole program, see also case 4, also doesn't stop overflowed inputs but eh
+      if(!(cin>>n))
+      {
+          cin.clear();
+          cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+          n=0;
+          cout <<"Exiting due to nonnumeric input, please try again \n\n";
+          break;
+
+      }
       while(!(n==1))
       {
       if (!(n%2))
@@ -37,8 +53,8 @@ int main()
       }
       cout<<"Congrats! \n\n";
       break;
-  case '2':
-cout<<"\n";
+ case '2'://computs sum of 1-100 two ways, returns value
+ cout<<"\n";
  for(int i=1; i<=100;i++)
  {
      n+=i;
@@ -47,7 +63,7 @@ cout<<"\n";
  n=100*(100+1)/2;
  cout<<"Using Gaussian formula n =" << n << "\nThey match! \n\n";
       break;
-  case '3':
+  case '3': // computes sum reciprocals using two data types, using two methods and finds differences
   {
       cout<<"\n";
       float f1=0.0;
@@ -82,12 +98,20 @@ cout<<"\n";
       cout<<"Difference between double sums="<<d1-d2<<"\n\n";
       break;
 }
-  case '4':
+  case '4'://returns factorial of input
   {
       cout<<"\n";
       int factorial =1;
       cout<<"Please enter a number to check \n";
-      cin>>n;
+      if(!(cin>>n))
+      {
+          cin.clear();
+          cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+          n=0;
+          cout <<"Exiting due to nonnumeric input, please try again \n\n";
+          break;
+
+      }
       for(factorial = 1; n>0;n--)
       {
           factorial=factorial*n;
@@ -95,6 +119,7 @@ cout<<"\n";
       cout<<"The factorial=" << factorial<< "\n\n";
       break;
   }
+      //multiple quit cases for case sensitivity
   case 'Q':
       return 0;
       break;
@@ -102,7 +127,7 @@ cout<<"\n";
       return 0;
       break;
   default:
-      cout<<"Error: input not valid\n";
+      cout<<"Error: input not valid\n\n";
       break;
   }
 
