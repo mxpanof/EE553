@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <cmath>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main()
   cout<< "2. Sum from 1 to 100 \n";
   cout<< "3. Sum reciprocals \n";
   cout<< "4. Compute factorial from input \n";
+  cout<< "5. Mystery Sum\n";
   cout<< "Q. Exit \n";
   cout<<"Please enter a number \n";
   //gather user input
@@ -119,6 +121,32 @@ int main()
       cout<<"The factorial=" << factorial<< "\n\n";
       break;
   }
+  case '5':
+  {
+      float f1 = 0.0;
+      int i = 0;
+      for(i = 1; f1<=1.64; i++)
+      {
+          f1+=1/float(i*i);
+      }
+      cout << "The value of this sum=" << f1<< "\n";
+      cout << "This took " << i << " iterations\n";
+      cout << "The square root of the product of the sum and 6="<<sqrt(6*f1) << "\n\n";
+      for(i = 1, f1=0; i<=500; i++)
+      {
+          f1+=1/float(i*i);
+      }
+      cout << "The value of this 500 interation, forward sum=" << f1<< "\n";
+      cout << "The square root of the product of the sum and 6="<<sqrt(6*f1) << "\n\n";
+      for(i = 500, f1=0; i>=1; i--)
+      {
+          f1+=1/float(i*i);
+      }
+      cout << "The value of this 500 iteration, backwards sum=" << f1<< "\n";
+      cout << "The square root of the product of the sum and 6="<<sqrt(6*f1) << "\n";
+      cout << "These sums are the same and shouldn't be, but I can't figure out why\n\n";
+  }
+      break;
       //multiple quit cases for case sensitivity
   case 'Q':
       return 0;
