@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <cmath>
 #include <fstream>
 using namespace std;
@@ -19,6 +20,26 @@ int main()
         WindTable << "\n";
     }
     WindTable.close();
+=======
+#include <stdint.h>
+
+using namespace std;
+
+/*
+void bisection (int holder, float diffcheck)
+{
+
+}
+*/
+inline double hello(double x)
+{
+   return x*x;
+}
+
+int main()
+{
+cout << hello(7);
+>>>>>>> a8de59b1d14981d551489a5826ada9584283e89f
 
 }
 
